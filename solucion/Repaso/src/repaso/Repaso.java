@@ -7,7 +7,6 @@ package repaso;
 import java.util.Locale;
 import java.util.Scanner;
 
-
 /**
  *
  * @author SALA I
@@ -19,69 +18,77 @@ public class Repaso {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-         Scanner entrada = new Scanner(System.in);
+        Scanner entrada = new Scanner(System.in);
         entrada.useLocale(Locale.US);
 
         String nombre;
-        int num;
-        double noc;
-        double mat;
-        String cid;
-        double seg_s;
+        int cedula;
+        double nocturnas;
+        double matutinas;
+        String ciudad;
+        double seg_social;
         boolean bandera = true;
         String mensaje = "";
-        double subt;
+        double subtotal;
         double total;
-        double mat_v;
-        double noc_v;
-        double des = 0;
-        int cont = 0;
+        double matutinas_valor;
+        double nocturnas_valor;
+        double descuento = 0;
+        int contador = 0;
         int salir;
 
         while (bandera) {
-            System.out.print("Ingrese su nombre\n");
+            System.out.println("Ingrese su nombre");
             nombre = entrada.nextLine();
             System.out.println("Ingrese el nombre de su ciudad");
-            cid = entrada.nextLine();
+            ciudad = entrada.nextLine();
             System.out.println("Ingrese su numero de cédula");
-            num = entrada.nextInt();
+            cedula = entrada.nextInt();
             System.out.println("Ingrese las horas matutinas trabajadas");
-            mat = entrada.nextDouble();
+            matutinas = entrada.nextDouble();
             System.out.println("Ingrese las horas nocturnas trabajadas");
-            noc = entrada.nextDouble();
-            
-            cont = cont + 1;
-            mat_v = mat *10;
-            
-            if (noc >= 10) {
-                des = noc *1.5;
+            nocturnas = entrada.nextDouble();
+
+            contador = contador + 1;
+            matutinas_valor = matutinas * 10;
+
+            if (nocturnas >= 10) {
+                descuento = nocturnas * 1.5;
             }
-            
-            noc_v = (noc *15) + des;
-            subt = mat_v + noc_v;
-            seg_s = (subt * 18) / 100; 
-            total = subt - seg_s;
-            
+
+            nocturnas_valor = (nocturnas * 15) + descuento;
+            subtotal = matutinas_valor + nocturnas_valor;
+            seg_social = (subtotal * 18) / 100;
+            total = subtotal - seg_social;
+
             mensaje = mensaje + "Rol del trabajador de nombre " + nombre +
-                    " y cédula " + num +".\n"+"\tHoras matutina trabajadas: "
-                    +mat+".\n"+"\tHoras nocturnas trabajadas: "+noc+".\n"+
-                    "\tSubtotal $"+subt+"\n\tSeguro Social $"+seg_s+"\n\tTota"
+                    " y cédula " + cedula +".\n"+"\tHoras matutina trabajadas: "
+                    +matutinas+".\n"+"\tHoras nocturnas trabajadas: "+nocturnas+".\n"+
+                    "\tSubtotal $"+subtotal+"\n\tSeguro Social $"+seg_social+"\n\tTota"
                     + "l a cancelar $"+total+"\n\n";
+            
             
             entrada.nextLine();
             System.out.print("Ingrese 1 si desea salir\n");
             salir = entrada.nextInt();
-            
+
             entrada.nextLine();
-            
-             if (salir == 1) {
+
+            if (salir == 1) {
                 bandera = false;
             }
-        
+
         }
         System.out.printf("Nómina de Trabajadores\n\n%sNúmero de empleados"
-                + " %d\n", mensaje, cont);
+                + " %d\n", mensaje, contador);
 
     }
-    
+
 }
+
+/*mensaje = System.out.printf("%sRol del trabajador de nombre %s y "
+                    + "cédula %d.\n\tHoras matutina trabajadas: %d.\n\tHoras"
+                    + " nocturnas tranajadas %d.\n\tSubtotal $%.1f.\n\tSeguro"
+                    + "socila $%.1f.\n\tTotal a cancelar $%.1f.\n",
+                    mensaje + nombre + cedula + matutinas + nocturnas + subtotal
+                    + seg_social + total);*/
